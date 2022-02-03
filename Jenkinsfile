@@ -2,6 +2,12 @@ pipeline {
   agent any
   stages {
     stage('Init') {
+      agent {
+        docker {
+          image 'docker pull ppiper/cf-cli:6'
+        }
+
+      }
       steps {
         sh 'cf login ${SCP_API_URL} -u ${SCP_USER} -p ${SCP_PASS} -o ${SCP_ORG} -s ${SCP_SPACE}'
       }
