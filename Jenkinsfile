@@ -14,6 +14,12 @@ pipeline {
       }
     }
 
+    stage('Build') {
+      steps {
+        echo 'Vamos a hacer el build'
+      }
+    }
+
   }
   environment {
     bluild_tool = 'npm'
