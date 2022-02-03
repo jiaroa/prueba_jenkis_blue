@@ -17,7 +17,8 @@ pipeline {
     stage('Build') {
       steps {
         echo 'Vamos a hacer el build'
-        mtaBuild ();
+        mtaBuild script: this
+                 buildTarget: 'CF'
       }
     }
 
