@@ -12,11 +12,13 @@ pipeline {
 
     stage('Build') {
       steps {
+        def pathGit = ""
         script {
-          def pathGit = sh 'pwd' 
+          pathGit = sh 'pwd' 
         }      
         echo 'Vamos a hacer el build'
-        echo 'El directorio es: ${pathGit}'
+        echo "El directorio es: ${pathGit}"
+        echo "El directorio es: ${WORKSPACE}"
 
         mtaBuild script: this, buildTarget: 'CF', source: "${pathGit}"    
 
