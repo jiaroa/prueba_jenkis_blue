@@ -7,15 +7,15 @@ pipeline {
     stage('Init') {      
       steps {
         git(url: 'https://github.com/jiaroa/fiori.gwsample.git', branch: 'master', credentialsId: 'GitHubBasicAuthJiaroa', changelog: true)
-        script {
-          env.pathGit = sh 'pwd' 
-          env.listGit = sh 'ls -lt' 
-        }
       }
     }
 
     stage('Build') {
       steps {
+        script {
+          env.pathGit = sh 'pwd' 
+          env.listGit = sh 'ls -lt' 
+        }        
         echo 'Vamos a hacer el build'
         echo "El directorio es: ${env.pathGit}"
         echo "Los ficheros son: ${env.listGit}"
