@@ -17,6 +17,7 @@ pipeline {
     stage('Build') {
       steps {
         echo 'Vamos a hacer el build'
+        mtaBuild ();
       }
     }
 
