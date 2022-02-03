@@ -26,7 +26,7 @@ pipeline {
         echo 'Vamos a hacer el build'
         echo 'El directorio es: ${pathGit}'
         echo 'Los ficheros son: ${listGit}'
-        mtaBuild(script: this, buildTarget: 'CF', source: '${pathGit}')
+        mtaBuild(script: this, buildTarget: 'CF', source: ${pathGit})
       }
     }
 
