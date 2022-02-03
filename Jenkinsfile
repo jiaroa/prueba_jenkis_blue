@@ -12,15 +12,19 @@ pipeline {
 
       }
       steps {
-        sh 'cf login -a ${SCP_API_URL} -u ${SCP_USER} -p ${SCP_PASS} -o ${SCP_ORG} -s ${SCP_SPACE}'
+        sh 'cf login -a ${SCP_API_URL} -u ${SCP_USER} -p ${SCP_PASS} -o ${SCP_ORG} -s ${SCP_SPACE}'        
         git(url: 'https://github.com/jiaroa/fiori.gwsample.git', branch: 'master', credentialsId: 'GitHubBasicAuthJiaroa', changelog: true)
+        pathGit = sh 'pwd' 
+        listGit = sh 'ls -lt' 
       }
     }
 
     stage('Build') {
       steps {
         echo 'Vamos a hacer el build'
-        mtaBuild(script: this, buildTarget: 'CF')
+        echo 'El directorio es: ${pathGit}'
+        echo 'Los ficheros son: ${listGit}'
+        //mtaBuild(script: this, buildTarget: 'CF')
       }
     }
 
