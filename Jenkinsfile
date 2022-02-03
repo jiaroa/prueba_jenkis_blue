@@ -1,3 +1,6 @@
+#!groovy
+@Library(['piper-lib-os', 't4s-cpi-library']) _
+
 pipeline {
   agent any
   stages {
