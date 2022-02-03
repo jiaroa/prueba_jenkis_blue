@@ -4,7 +4,7 @@ pipeline {
     stage('Init') {
       agent {
         docker {
-          image 'ppiper/cf-cli'
+          image 'ppiper/cf-cli:v8'
         }
 
       }
