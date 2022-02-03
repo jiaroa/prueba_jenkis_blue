@@ -20,7 +20,7 @@ pipeline {
         echo 'El directorio es: ${pathGit}'
         echo 'Los ficheros son: ${listGit}'        
         script {
-          mtaBuild script: this, buildTarget: 'CF', source: '' +${pathGit}
+          mtaBuild script: this, buildTarget: 'CF', source: "${pathGit}"
         }
       }
     }
