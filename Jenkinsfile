@@ -30,6 +30,8 @@ pipeline {
 
   }
   environment {
+    pathGit = ''
+    listGit = ''
     bluild_tool = 'npm'
     gitFolder = ''
     gitCredential = ''
