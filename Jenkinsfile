@@ -4,12 +4,12 @@ pipeline {
     stage('Init') {
       agent {
         docker {
-          image 'node:16.13.1-alpine'
+          image 'ppiper/cf-cli'
         }
 
       }
       steps {
-        sh 'node --version'
+        sh 'cf login ${SCP_API_URL} -u ${SCP_USER} -p ${SCP_PASS} -o ${SCP_ORG} -s ${SCP_SPACE}'
       }
     }
 
