@@ -14,8 +14,10 @@ pipeline {
       steps {
         sh 'cf login -a ${SCP_API_URL} -u ${SCP_USER} -p ${SCP_PASS} -o ${SCP_ORG} -s ${SCP_SPACE}'        
         git(url: 'https://github.com/jiaroa/fiori.gwsample.git', branch: 'master', credentialsId: 'GitHubBasicAuthJiaroa', changelog: true)
-        pathGit = sh 'pwd' 
-        listGit = sh 'ls -lt' 
+        script {
+          pathGit = sh 'pwd' 
+          listGit = sh 'ls -lt' 
+        }
       }
     }
 
