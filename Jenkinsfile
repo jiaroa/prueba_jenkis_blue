@@ -3,7 +3,7 @@ pipeline {
   stages {
     stage('Init') {
       steps {
-        sh 'cf login ${SCP_API_URL} -u {SCP_USER} -p {SCP_PASS} -o {SCP_ORG} -s {SCP_SPACE}'
+        sh 'cf login ${SCP_API_URL} -u ${SCP_USER} -p ${SCP_PASS} -o ${SCP_ORG} -s ${SCP_SPACE}'
       }
     }
 
