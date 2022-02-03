@@ -32,6 +32,7 @@ pipeline {
         sh 'cf login -a ${SCP_API_URL} -u ${SCP_USER} -p ${SCP_PASS} -o ${SCP_ORG} -s ${SCP_SPACE}'        
         echo "El directorio es: ${BUILD_DIR}"
         dir ("${BUILD_DIR}") {
+          sh 'ls -lt' 
           sh 'cf deploy'        
         }
       }
