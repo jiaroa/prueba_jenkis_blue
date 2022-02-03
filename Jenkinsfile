@@ -17,11 +17,9 @@ pipeline {
     stage('Build') {
       steps {
         echo 'Vamos a hacer el build'
-        echo 'El directorio es: ${pathGit}'
-        echo 'Los ficheros son: ${listGit}'        
-        script {
-          mtaBuild script: this, buildTarget: 'CF', source: "${pathGit}"
-        }
+        echo "El directorio es: ${pathGit}"
+        echo "Los ficheros son: ${listGit}"
+        mtaBuild script: this, buildTarget: 'CF', source: "${pathGit}"        
       }
     }
     stage('deploy') {
