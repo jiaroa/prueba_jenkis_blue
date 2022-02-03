@@ -4,15 +4,8 @@
 pipeline {
   agent any
   stages {
-    stage('Init') {
-      agent {
-        docker {
-          image 'ppiper/cf-cli:v8'
-        }
-
-      }
+    stage('Init') {      
       steps {
-        sh 'cf login -a ${SCP_API_URL} -u ${SCP_USER} -p ${SCP_PASS} -o ${SCP_ORG} -s ${SCP_SPACE}'        
         git(url: 'https://github.com/jiaroa/fiori.gwsample.git', branch: 'master', credentialsId: 'GitHubBasicAuthJiaroa', changelog: true)
         script {
           pathGit = sh 'pwd' 
@@ -29,7 +22,18 @@ pipeline {
         mtaBuild script: this, buildTarget: 'CF', source: '/var/jenkins_home/workspace/prueba_jenkis_blue_master@2'
       }
     }
+    stage('deploy') {
+      agent {
+        docker {
+          image 'ppiper/cf-cli:v8'
+        }
 
+      }
+      steps {
+        sh 'cf login -a ${SCP_API_URL} -u ${SCP_USER} -p ${SCP_PASS} -o ${SCP_ORG} -s ${SCP_SPACE}'        
+        sh 'cf push'        
+      }
+    }
   }
   environment {
     pathGit = ''
