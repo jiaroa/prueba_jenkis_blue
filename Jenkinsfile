@@ -20,7 +20,8 @@ pipeline {
         echo 'El directorio es: ${pathGit}'
         echo 'Los ficheros son: ${listGit}'
         dir('${listGit}') {
-            mtaBuild script: this, buildTarget: 'CF', source: '/var/jenkins_home/workspace/prueba_jenkis_blue_master@2'
+            //mtaBuild script: this, buildTarget: 'CF', source: '/var/jenkins_home/workspace/prueba_jenkis_blue_master@2'
+            mtaBuild script: this, buildTarget: 'CF'
         }        
       }
     }
