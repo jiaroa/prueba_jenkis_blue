@@ -15,11 +15,12 @@ pipeline {
         script {
           env.pathGit = sh 'pwd' 
           env.listGit = sh 'ls -lt' 
-        }        
-        echo 'Vamos a hacer el build'
-        echo "El directorio es: ${env.pathGit}"
-        echo "Los ficheros son: ${env.listGit}"
-        mtaBuild script: this, buildTarget: 'CF', source: "${env.pathGit}"        
+               
+          echo 'Vamos a hacer el build'
+          echo "El directorio es: ${env.pathGit}"
+          echo "Los ficheros son: ${env.listGit}"
+          mtaBuild script: this, buildTarget: 'CF', source: "${env.pathGit}"    
+        }
       }
     }
     stage('deploy') {
