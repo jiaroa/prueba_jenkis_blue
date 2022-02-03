@@ -15,7 +15,7 @@ pipeline {
         script {
           echo 'Vamos a hacer el build'          
           echo "El directorio es: ${WORKSPACE}"
-
+          BUILD_DIR = "${WORKSPACE}"
           mtaBuild script: this, buildTarget: 'CF', source: "${WORKSPACE}"    
         }
 
@@ -30,7 +30,7 @@ pipeline {
       }
       steps {
         sh 'cf login -a ${SCP_API_URL} -u ${SCP_USER} -p ${SCP_PASS} -o ${SCP_ORG} -s ${SCP_SPACE}'        
-        dir ("${WORKSPACE}") {
+        dir ("${BUILD_DIR}") {
           sh 'cf deploy'        
         }
       }
@@ -47,5 +47,6 @@ pipeline {
     SCP_PASS = '98Jfgn78r9$'
     SCP_ORG = '66de7174trial'
     SCP_SPACE = 'dev'
+    BUILD_DIR = ''
   }
 }
