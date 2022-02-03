@@ -13,13 +13,12 @@ pipeline {
     stage('Build') {
       steps {
         script {
-          env.pathGit = sh 'pwd' 
-          env.listGit = sh 'ls -lt' 
+          def pathGit = sh 'pwd' 
                
           echo 'Vamos a hacer el build'
-          echo "El directorio es: ${env.pathGit}"
-          echo "Los ficheros son: ${env.listGit}"
-          mtaBuild script: this, buildTarget: 'CF', source: "${env.pathGit}"    
+          echo 'El directorio es: ${pathGit}'
+          
+          mtaBuild script: this, buildTarget: 'CF', source: "${pathGit}"    
         }
       }
     }
