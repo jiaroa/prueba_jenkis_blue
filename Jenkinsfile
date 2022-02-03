@@ -8,8 +8,8 @@ pipeline {
       steps {
         git(url: 'https://github.com/jiaroa/fiori.gwsample.git', branch: 'master', credentialsId: 'GitHubBasicAuthJiaroa', changelog: true)
         script {
-          pathGit = sh 'pwd' 
-          listGit = sh 'ls -lt' 
+          env.pathGit = sh 'pwd' 
+          env.listGit = sh 'ls -lt' 
         }
       }
     }
@@ -17,12 +17,9 @@ pipeline {
     stage('Build') {
       steps {
         echo 'Vamos a hacer el build'
-        echo 'El directorio es: ${pathGit}'
-        echo 'Los ficheros son: ${listGit}'
-        dir('${listGit}') {
-            //mtaBuild script: this, buildTarget: 'CF', source: '/var/jenkins_home/workspace/prueba_jenkis_blue_master@2'
-            mtaBuild script: this, buildTarget: 'CF'
-        }        
+        echo 'El directorio es: ${env.pathGit}'
+        echo 'Los ficheros son: ${env.listGit}'        
+        mtaBuild script: this, buildTarget: 'CF', source: '${env.pathGit}'        
       }
     }
     stage('deploy') {
