@@ -17,6 +17,7 @@ pipeline {
           echo "El directorio es: ${WORKSPACE}"
           BUILD_DIR = "${WORKSPACE}"
           mtaBuild script: this, buildTarget: 'CF', source: "${WORKSPACE}"    
+          mtarFilePath = commonPipelineEnvironment.getMtarFilePath()
         }
 
       }
@@ -33,12 +34,13 @@ pipeline {
         echo "El directorio es: ${BUILD_DIR}"
         dir ("${BUILD_DIR}") {
           sh 'ls -lt' 
-          sh 'cf deploy'        
+          sh "cf deploy ${mtarFilePath}"
         }
       }
     }
   }
   environment {
+    mtarFilePath = ''
     pathGit = ''
     listGit = ''
     bluild_tool = 'npm'
